@@ -1,0 +1,18 @@
+@startuml TaskFlow_Kyznetsov_Lab2
+interface ITaskRepository
+interface IPriorityStrategy
+class TaskService
+class InMemoryTaskRepository
+class SQLiteTaskRepository
+class UrgencyPriorityStrategy
+class CreationLog
+class make_repository <<factory>>
+TaskService --> ITaskRepository
+TaskService --> IPriorityStrategy
+TaskService ..> CreationLog : Observer
+InMemoryTaskRepository ..|> ITaskRepository
+SQLiteTaskRepository ..|> ITaskRepository
+UrgencyPriorityStrategy ..|> IPriorityStrategy
+make_repository ..> InMemoryTaskRepository
+make_repository ..> SQLiteTaskRepository
+@enduml
